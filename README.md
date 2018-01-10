@@ -16,6 +16,7 @@ manner, it is implemented with Knockoutjs.
 **Prerequisites:
 
 1-	You need to download Microsoft Visual Studio from the project's website https://www.visualstudio.com/downloads/ .
+
 2-	Clone the repository from GitHub https://github.com/HaifaS/ExpediaTask-HotelDeals/  .
 
 
