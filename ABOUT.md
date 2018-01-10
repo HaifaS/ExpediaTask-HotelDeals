@@ -33,6 +33,11 @@ I guess you meant it and there is no problem in the search request .
 	Assumption 2 :
 Since server-side pagination is not allowed to send it in the query parameters so I considered that the total record count is equal the length of returned list and implement the client-side pagination.
 there are no issues if I can get the total hotels offers which are matching the searching criteria.
+
+**faced Issues :
+
+Choosing knockout for developing this web site which is not one of the supported languages in Heroku ,was made hosting a challenging task since you have to create the Buildpack Api,so this point was missing and Github pages hosting service was used instead.
+
 ***************************************************************************************************************
 **UI Implemented using: Knockout
 
