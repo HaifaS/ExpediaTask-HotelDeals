@@ -1,0 +1,185 @@
+﻿
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Search Hotels</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link href="Css/jquery-ui.min.css" rel="stylesheet" />
+     <link href="Css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Css/myStyle.css" rel="stylesheet" />
+
+   
+
+</head>
+
+
+<body>
+    <form id="form1">
+
+        <div class="mainDiv marginTop10px">
+
+            <div class="spinner" data-bind="visible: isWorking">  </div>
+
+            <div class="alert alert-error marginTop10px marginBottom10px" data-bind="visible: errors().length > 0" id="dvErrorsContainer">
+                <ul data-bind="foreach: errors" class="divListErrors">
+
+                    <li data-bind="text: message"></li>
+                </ul>
+            </div>
+           
+                <div class="grayDiv pure-form">
+                    <br />
+                    <span>Going to</span>
+                    <input type="text" data-bind="value:destinationCity " style="width:418px" required />
+
+                    <br />
+                    <br />
+                    Check In
+                    <input type="text" data-bind="value: minTripStartDate, datepicker: {}" />
+                    Check Out
+                    <input type="text" data-bind="value: maxTripStartDate, datepicker: {}" />
+                    <br />
+                    <br />
+                    <br />
+                    <table>
+                        <tr><td><span>Star Rating</span></td></tr>
+                        <tr><td><input id="rating5" type="checkbox"  value="5" data-bind="checked:rate5"><label >5</label><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /></td> </tr>
+                        <tr><td><input id="rating4" type="checkbox"  value="4" data-bind="checked:rate4"><label >4</label><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /></td> </tr>
+                        <tr><td><input id="rating3" type="checkbox"  value="3" data-bind="checked:rate3"><label >3</label><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /></td> </tr>
+                        <tr><td><input id="rating2" type="checkbox"  value="2" data-bind="checked:rate2"><label >2</label><img src="Css/star-off-big.png" /><img src="Css/star-off-big.png" /></td> </tr>
+                        <tr><td><input id="rating1" type="checkbox"  value="1" data-bind="checked:rate1"><label >1</label><img src="Css/star-off-big.png" /></td> </tr>
+                    </table>
+
+                    <div class="pure-form" >
+              
+
+                        <script type="text/html" id="numberValueTemplate">
+                            <input type="text" placeholder="Enter number" data-bind="value: searchValue" required />
+                        </script>
+
+                        <script type="text/html" id="dateValueTemplate">
+                            <input type="text" data-bind="value: searchValue, datepicker: {} ,visible:false" />
+                        </script>
+
+
+                        <script type="text/html" id="stringValueTemplate">
+                            <input type="text" placeholder="Enter text" data-bind="value: searchValue" required class="inputTemplate" />
+                        </script>
+
+
+
+                        <ul data-bind="foreach: searchCriteria" style="margin-left: 0px; padding-left: 74px; list-style-type: none; " class="divList">
+                            <li>
+                                <a data-bind="click: $root.removeSearchLine" class="">
+                                    <img src="Css/cross-no.png" style="{width:'1px', height='1px' }" />
+                                </a>
+                                <select data-bind="options: $root.fieldMetadata, optionsText: 'fieldDesc', value: selectedField" class="inputTemplate"></select>
+                                <select data-bind="options: availableOperators, value: selectedOperator" style="width: 170px" class="inputTemplate"></select>
+                                <div data-bind="template: { name: fieldTemplate(), data: $data }" style="display: inline; width: 320px" class="inputTemplate"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+
+
+                        <br />
+                        <button data-bind="click: search" class="btn appFont marginTop10px  pure-button-primary">Search</button>
+                        <button data-bind="click: addNewSearchLine" class="btn appFont marginTop10px  pure-button-primary">Add Filter</button>
+                    </div>
+
+
+                </div>
+
+                <h6 data-bind="visible: searchResults().length > 0 ">Your search returned (<span data-bind="text :SearchResultCount()"></span>) record(s)</h6>
+               
+                    <table data-bind="visible: searchResults().length > 0" class="table  appFont  marginBottom10px defaultCursor">
+
+                        <tbody data-bind="foreach: searchResults">
+                            <tr>
+                                <td>
+
+                                    <section style="font-family:Verdana;color:black;">
+
+                                        <div style="background-color:darkslategray;padding:15px;text-align:center;">
+                                            <h3> <span data-bind="text: $data.hotelInfo.hotelName"></span>   </h3>  
+
+                                        </div>
+                                        <div class="left">
+                                            <img class="imgr" data-bind="attr: { src: $data.hotelInfo.hotelImageUrl }" />
+
+                                        </div>
+                                        <div style="overflow:auto">
+                                            <div class="main">
+
+                                                <h6> <span data-bind="text :$data.hotelInfo.hotelLongDestination + ' ' + $data.hotelInfo.hotelStreetAddress"></span>    </h6>
+                                                <h5><span data-bind="text: $data.hotelInfo.hotelStarRating"></span><img src="Css/star-on-big.png" /> </h5>
+
+                                                <span data-bind="text: $data.hotelPricingInfo.originalPricePerNight + ' '+ $data.hotelPricingInfo.currency"></span>
+                                                <p>avg/night</p>
+
+
+                                            </div>
+                                            <div class="right">
+
+                                                <h5><span data-bind="text: $data.hotelInfo.hotelGuestReviewRating + '/5' "></span> </h5>
+                                                <h6 data-bind="text: '( ' + $data.hotelInfo.hotelReviewTotal + ' reviews)'"> </h6>
+                                                <p> We have <span data-bind="text: $data.hotelUrgencyInfo.numberOfRoomsLeft"> </span> left at</p>
+                                                <p style="color:firebrick"><span data-bind="text: $data.hotelUrgencyInfo.almostSoldStatus"> </span> </p>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="footer">  </div>
+
+                                    </section>
+
+
+
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+              
+                <div data-bind="visible: searchResults().length > 0" class="pagination" style="padding-left:70%">
+
+                    <ul>
+                        <li data-bind="css: { disabled: selectedPageIndex() === 0 }"><a href="#" data-bind="click :function () { $root.moveToPage(0); }" > |< </a></li>
+                    </ul>
+                    <ul>
+                        <li data-bind="css: { disabled: selectedPageIndex() === 0 }"><a href="#" data-bind="click :previousPage" > << </a></li>
+                    </ul>
+
+                    <ul>
+                        <li data-bind="css: { disabled: selectedPageIndex() === maxIndex() }"><a href="#" data-bind="click :nextPage" > >> </a></li>
+                    </ul>
+                    <ul>
+                        <li data-bind="css: { disabled: selectedPageIndex() === maxIndex() }"><a href="#" data-bind="click: function () { $root.moveToPage(maxIndex()); }" > >| </a></li>
+                    </ul>
+                    <ul class="pagerStatsUL">
+                        <li style="background-color:white">
+                            <span class="pagerStats">Page <span data-bind="text: selectedPageIndex() + 1"></span> / <span class="" data-bind="text: maxIndex() + 1"></span></span>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+        
+        </div>
+
+
+    </form>
+
+
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script src="Scripts/jquery-ui-1.10.4.js"></script>
+    <script src="Scripts/knockout-2.2.1.js"></script>
+    <script src="Scripts/knockout-jqueryui.min.js"></script>
+    <script src="App/searchHotelOffers.js"></script>
+
+
+</body>
+</html>
