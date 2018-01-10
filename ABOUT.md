@@ -43,12 +43,13 @@ It uses observable to make your UI automatically stay in sync with an underlying
 
 **Getting started
 
-Totally new to Knockout? The most fun place to start is the online interactive tutorials.
+Totally new to Knockout? The most fun place to start is the online interactive tutorials http://learn.knockoutjs.com/ .
 For more details, see
-•	Documentation on the project's website
+•	Documentation on the project's website http://knockoutjs.com/documentation/introduction.html
 •	Online examples at http://knockoutjs.com/examples/ 
-Downloading Knockout
-You can download released versions of Knockout from the project's website.
+
+Downloading Knockout:
+You can download released versions of Knockout from the project's website http://knockoutjs.com/downloads/ .
 
 **Why Knockout?
 
