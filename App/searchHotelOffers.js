@@ -233,7 +233,7 @@
                 }
             }).fail(
                 function (xhr, textStatus, err) {
-                    self.errors.push({ message: xhr.responseJSON.Message });
+                    self.errors.push({ message: err });
                 });
 
         };
