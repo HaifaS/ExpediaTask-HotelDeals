@@ -11,6 +11,7 @@ Prerequisites:
 
 1-	You need to download Microsoft Visual Studio   from the project's website.
 2-	Clone the repository  from GitHub .
+
 Note: after downloading the project on your local machine ,you may need to Restore some missing Nugets
 packages by pressing the right click button on the solution itself and select “Restore Nuget Packages”
 then you need just to clean and re-build the project.
